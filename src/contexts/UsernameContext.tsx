@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { StringLiteral } from '@babel/types';
 
 // adding ? because, as this is done, otherwise mocking everything in other calls would be time consuming
-interface GitHubUser {
+export interface GitHubUser {
   avatar_url?: string;
   name?: string;
   login?: string;
@@ -15,7 +14,7 @@ interface GitHubOrganization {
   url: string;
 }
 
-interface GitHubRepo {
+export interface GitHubRepo {
   full_name?: string;
   html_url?: string;
   description?: string;
@@ -50,16 +49,9 @@ export const UsernameContext = React.createContext({
 });
 
 export const UsernameContextProvider = (props: React.HTMLProps<HTMLDivElement>) => {
-  console.log('INIT UsernameContextProvider')
-
-
   const [username, setUsername ] = useState();
   const [userData, setUserData ] = useState();
   const [userRepos, setUserRepos ] = useState();
-
-  //const [state, setState ] = useState(initState);
-
-//console.log('STATE', state)
 
   return (
     <UsernameContext.Provider value={{userData, username, userRepos, setUserData, setUserRepos, setUsername}}>

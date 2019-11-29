@@ -1,25 +1,20 @@
-import React, { useContext }  from 'react';
-import { UsernameContext } from '../contexts/UsernameContext';
-import { Button, Card, Image, Container, Row, Col } from 'react-bootstrap';
+import React  from 'react';
+import { GitHubRepo } from '../contexts/UsernameContext';
+import { Card } from 'react-bootstrap';
 
-
-
-const Repository = ({ repo }: any) => {
-
-  return (
-
-<Card className="mb-2">
-  <Card.Body>
-    <Card.Title><a href={repo.html_url}>{repo.full_name}</a></Card.Title>
-    <Card.Text className="text-muted">{repo.description}
-    </Card.Text>
-  </Card.Body>
-</Card>
-  );
+interface Props {
+  repo: GitHubRepo;
 }
 
-
-
-
+const Repository = ({ repo }: Props) => {
+  return (
+    <Card className="mb-2">
+      <Card.Body>
+        <Card.Title><a href={repo.html_url}>{repo.full_name}</a></Card.Title>
+        <Card.Text className="text-muted">{repo.description}</Card.Text>
+      </Card.Body>
+    </Card>
+  );
+}
 
 export default Repository;
