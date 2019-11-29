@@ -1,73 +1,34 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
-
-import logo from './logo.svg';
+import React, { useContext }  from 'react';
+import { BrowserRouter as Router, Link } from 'react-router-dom';
+import { Form, Button,Spinner, Jumbotron, Container, Row, Col } from 'react-bootstrap';
+import { UsernameContext } from './contexts/UsernameContext';
+import { Pages } from './Pages';
 import './App.css';
-import Alert from 'react-bootstrap/Alert';
 
 const App: React.FC = () => {
+  const { username, setUsername } = useContext(UsernameContext);
+
   return (
     <Router>
-      <div>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/about">About</Link>
-          </li>
-          <li>
-            <Link to="/dashboard">Dashboard</Link>
-          </li>
-        </ul>
+          <Container id="app-page">
+      <Row>
+        <Col>
 
-        <hr />
+        {username
+          ?         <Button    size="lg" className="text-right"
+          variant="outline-warning" onClick={() => setUsername('')}>Logout</Button>
 
-        {/*
-          A <Switch> looks through all its children <Route>
-          elements and renders the first one whose path
-          matches the current URL. Use a <Switch> any time
-          you have multiple routes, but you want only one
-          of them to render at a time
-        */}
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/dashboard">
-            <Dashboard />
-          </Route>
-        </Switch>
-      </div>
+          :         <Button    size="lg"
+          variant="warning" href="/login">Login</Button>
+
+        }
+
+
+        <Pages />
+        </Col>
+        </Row>
+        </Container>
     </Router>
-
-  );
-}
-
-function Home() {
-  return (
-    <div>
-      <h2>Home</h2>
-    </div>
-  );
-}
-
-function About() {
-  return (
-    <div>
-      <h2>About</h2>
-    </div>
-  );
-}
-
-function Dashboard() {
-  return (
-    <div>
-      <h2>Dashboard</h2>
-    </div>
   );
 }
 

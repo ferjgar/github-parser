@@ -1,0 +1,9 @@
+#home-page .user-card {
+  width: 300px;
+}
+
+#home-page .organization {
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+}
