@@ -11,14 +11,14 @@ const Home = () => {
 
   // this is gross, we're getting 250 max repos in the default request, we should limit the entities
   // and use Link header from the GB response to build a proper pagination
-  const previewRepos = userRepos.repos.slice(0, 10);
-  const showAllRepos = userRepos.repos.length > 10;
+  const previewRepos = (userRepos.repos && userRepos.repos.slice(0, 10)) || [];
+  const showAllRepos = (userRepos.repos && userRepos.repos.length > 10) || [];
 
   return (
     <Container id="home-page">
       <Row>
         <Col md="4">
-          <UserData user={userData.user} />
+          {userData.user && <UserData user={userData.user} />}
         </Col>
         <Col md="4">
           <h3>repositories</h3>
@@ -37,7 +37,7 @@ const Home = () => {
         </Col>
         <Col md="4">
           <h3>organizations</h3>
-          {userData.orgs.length
+          {userData.orgs && userData.orgs.length
             ? userData.orgs.map(org => (
               <a href={`https://github.com/${org.login}`} target="_blank" rel="noopener noreferrer">
                 <Image className="organization" src={org.avatar_url} thumbnail title={org.login}/>

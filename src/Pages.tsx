@@ -1,4 +1,4 @@
-import React, { useContext }  from 'react';
+import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { UsernameContext } from './contexts/UsernameContext';
 import Home from './pages/Home';
@@ -6,7 +6,8 @@ import Repositories from './pages/Repositories';
 import Login from './pages/Login';
 
 export const Pages = () => {
-  const { username } = useContext(UsernameContext);
+  // we use React to call useContext to be able to mock it
+  const { username } = React.useContext(UsernameContext);
 
   return (
     <Switch>
@@ -26,7 +27,7 @@ export const Pages = () => {
         <Login />
       </Route>
       <Route>
-        <Redirect to='/' />
+        <Redirect to="/" />
       </Route>
     </Switch>
   );
